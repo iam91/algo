@@ -21,6 +21,7 @@ public class CombinationSumII {
         } else {
             int id = idx;
             while(id < can.length) {
+
                 int c = 0;
                 for(int i = id; i < can.length; i++) {
                     if(can[i] == can[id]) c++;
@@ -38,6 +39,7 @@ public class CombinationSumII {
                     path.remove(path.size() - 1);
                     sum -= can[id];
                 }
+
                 id += c;
             }
         }
