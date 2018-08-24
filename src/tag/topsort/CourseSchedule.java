@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 public class CourseSchedule {
+    // https://leetcode.com/problems/course-schedule
     private int[][] g;
     private int n;
     private int[] visited;
@@ -71,10 +72,11 @@ public class CourseSchedule {
 
     private boolean dfs(int x) {
         if(flag[x] == 1) return false;
+        if(visited[x] == 1) return true;
         flag[x] = 1;
+        visited[x] = 1;
         for(int i = 0; i < n; i++) {
             if(g[x][i] > 0) {
-                visited[x] = 1;
                 if(!dfs(i)) return false;
             }
         }
