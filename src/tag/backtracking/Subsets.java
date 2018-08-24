@@ -14,8 +14,7 @@ public class Subsets {
 
     private void dfs(int[] nums, int d, List<List<Integer>> res, List<Integer> path) {
         if(d == nums.length) {
-            List<Integer> c = new LinkedList<>();
-            c.addAll(path);
+            List<Integer> c = new LinkedList<>(path);
             res.add(c);
         } else {
             path.add(nums[d]);
