@@ -1,6 +1,6 @@
 package tag.string;
 
-public class LongestSubstringWithoutRepeating {
+public class LongestNonRepeatingSubstring {
     // https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
     public int lengthOfLongestSubstring(String s) {
         if(s == null|| s.length() == 0) return 0;
