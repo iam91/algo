@@ -11,7 +11,7 @@ public class Main1 {
         return r;
     }
 
-    private static boolean solve(boolean[][] g, int N, int M) {
+    private static boolean solve(boolean[][] g, int N) {
         int[] parents = new int[N];
 
         for(int i = 0; i < N; i++) parents[i] = i;
@@ -57,7 +57,7 @@ public class Main1 {
                 int to = scan.nextInt() - 1;
                 g[from][to] = g[from][to] = true;
             }
-            System.out.println(solve(g, N, M) ? "Yes" : "No");
+            System.out.println(solve(g, N) ? "Yes" : "No");
         }
 
         scan.close();
