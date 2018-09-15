@@ -6,7 +6,7 @@ import java.text.*;
 import java.math.*;
 import java.util.regex.*;
 
-public class Main {
+public class JDMain {
 
 
     /*请完成下面这个函数，实现题目要求的功能
@@ -73,4 +73,28 @@ public class Main {
         System.out.println(String.valueOf(res));
 
     }
+
+//    private void t(Node[] nums) {
+//        Arrays.sort(nums, new Comparator<Node>() {
+//            public int compare(Node node1, Node node2) {
+//                if(node1.count == node2.count) {
+//                    return node1.order - node2.order;
+//                } else {
+//                    return node2.count - node1.count;
+//                }
+//            }
+//        });
+//    }
 }
+
+//class Node {
+//    Integer val;
+//    Integer count;
+//    Integer order;
+//
+//    public Node(int val, int count, int order) {
+//        this.val = val;
+//        this.count = count;
+//        this.order = order;
+//    }
+//}

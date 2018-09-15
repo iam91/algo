@@ -1,7 +1,7 @@
 package tag;
 
 import java.util.Scanner;
-public class Main1 {
+public class JDMain1 {
 
     private static int find(int[] parents, int i) {
         int r = parents[i];
