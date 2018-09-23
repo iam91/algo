@@ -1,6 +1,7 @@
-package tag.dp.sequence;
+package tag.dp.seq;
 
-public class LICS {
+public class LIS {
+    // Longest Increasing SubSequence
     // https://leetcode.com/problems/longest-increasing-subsequence/description/
     public int lengthOfLIS(int[] nums) {
          return dp(nums);

@@ -1,4 +1,4 @@
-package tag.dp.sequence;
+package tag.dp.seq;
 
 public class MaxSumSubArray {
     // https://leetcode.com/problems/maximum-subarray/description/

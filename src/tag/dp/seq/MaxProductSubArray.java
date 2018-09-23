@@ -1,4 +1,4 @@
-package tag.dp.sequence;
+package tag.dp.seq;
 
 public class MaxProductSubArray {
     // https://leetcode.com/problems/maximum-product-subarray/description/
