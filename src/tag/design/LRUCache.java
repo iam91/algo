@@ -2,74 +2,64 @@ package tag.design;
 
 import java.util.HashMap;
 
-public class LRUCache {
+class LRUCache {
 
-    private int capacity;
-    private HashMap<Integer, Node> map;
-    private Node head, tail;
-    private int size;
+    int capacity;
+
+    LRUNode head, last;
+    HashMap<Integer, LRUNode> map;
 
     public LRUCache(int capacity) {
         this.capacity = capacity;
         this.map = new HashMap<>();
-        this.head = new Node();
-        this.tail = this.head;
-        this.size = 0;
+        this.head = this.last = new LRUNode();
     }
 
     public int get(int key) {
-        Node n = hit(key);
-        if(n != null) return n.value;
-        return -1;
+        if(this.map.containsKey(key)) {
+            LRUNode o = this.map.get(key);
+            remove(o);
+            addLast(o);
+            return o.value;
+        } else return -1;
     }
 
     public void put(int key, int value) {
-        Node n = hit(key);
-        if(n != null) n.value = value;
-        else {
-            if(this.size >= this.capacity) {
-                Node last = this.tail;
-                this.tail = last.prev;
-                this.tail.next = null;
-                this.map.remove(last.key);
-                this.size--;
-            }
-
-            Node newNode = new Node(key, value);
-            this.map.put(key, newNode);
-
-            addFirst(newNode);
-
-            this.size++;
-        }
-    }
-
-    private void addFirst(Node newNode) {
-        if(this.head.next == null) {
-            this.tail = newNode;
-        } else {
-            this.head.next.prev = newNode;
-            newNode.next = this.head.next;
-        }
-        this.head.next = newNode;
-        newNode.prev = this.head;
-    }
-
-    private Node hit(int key) {
+        LRUNode o;
         if(this.map.containsKey(key)) {
-            Node node = this.map.get(key);
-
-            if(node == this.tail) {
-                this.tail = this.tail.prev;
-                node.prev.next = null;
-            } else {
-                node.prev.next = node.next;
-                node.next.prev = node.prev;
+            o = this.map.get(key);
+            o.value = value;
+            remove(o);
+            addLast(o);
+        } else {
+            if(this.map.size() >= this.capacity) {
+                LRUNode t = removeFirst();
+                this.map.remove(t.key);
             }
+            o = new LRUNode(key, value);
+            this.map.put(key, o);
+            addLast(o);
+        }
+    }
 
-            addFirst(node);
-            return node;
-        } else return null;
+    private void remove(LRUNode o) {
+        o.prev.next = o.next;
+        if(o.next != null) o.next.prev = o.prev;
+        if(o == this.last) this.last = o.prev;
+        o.next = o.prev = null;
+    }
+
+    private LRUNode removeFirst() {
+        LRUNode o = this.head.next;
+        if(o != null) remove(o);
+        // 返回被淘汰元素方便获取key，从HashMap中删除
+        return o;
+    }
+
+    private void addLast(LRUNode o) {
+        this.last.next = o;
+        o.prev = this.last;
+        this.last = o;
     }
 }
 
@@ -79,16 +69,15 @@ public class LRUCache {
  * int param_1 = obj.get(key);
  * obj.put(key,value);
  */
-
-class Node {
+class LRUNode {
     int key;
     int value;
-    Node next, prev;
+    LRUNode next, prev;
 
-    Node () {}
+    LRUNode() {}
 
-    Node (int key, int value) {
+    LRUNode(int key, int val) {
         this.key = key;
-        this.value = value;
+        this.value = val;
     }
 }
