@@ -1,7 +1,5 @@
 package tag.design;
 
-import javax.xml.crypto.Data;
-import java.lang.reflect.ParameterizedType;
 import java.util.HashMap;
 
 class LFUCache {
@@ -83,12 +81,6 @@ class LFUCache {
         c.put(2, 2);
         c.get(1);
         c.put(3, 3);
-        c.get(2);
-        c.get(3);
-        c.put(4, 4);
-        c.get(1);
-        c.get(3);
-        c.get(4);
     }
 }
 
